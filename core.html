@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        /*'use strict'; // ES5*/
+        // creating an object as an object literal
+        var person = {
+            name: 'Edwin Villanueva',
+            sayHello: function () {
+                console.log('Hello from ' + this.name);
+            }
+        };
+
+        console.log(person.toString());
+
+        console.log(person.name);
+
+        // Constructor Function - capitalized
+        function Person (name) {
+            this.name = name;
+        }
+
+        console.log(Person.toString());
+        Person.prototype.name = 'Edwin_parent';
+
+        var person_1 = new Person('Edwin Villanueva');
+
+        console.log(Object.getPrototypeOf(person_1));
+
+        var person_3 = new Object();
+        person_3.name = 'Edwin Villanueva';
+
+        // Object.create
+        var person_2 = Object.create(Object.prototype);
+        person_2.name = 'Edwin Villanueva';
+
+        // todo: Write a function that checks all the properties of two objects and prints if the objects are same
+
+        // Object - attributes, properties
+        // Attributes - do not use a . operator, cannot access attributes as properties
+
+        // Prototype, classname, extensible
+
+        // todo: WAF to print all the own properties of an object
+
+        person.id = 64; // extensibility
+        Object.isExtensible(person);
+        Object.preventExtensions(person);
+        Object.getPrototypeOf(person);
+        person.gender = 'Male';
+        console.log(person.gender);
+
+        // Inheritance
+
+        var child = Object.create(person);
+        child.name = '!Edwin';
+        console.log(child.name);
+
+        console.log(Object.getPrototypeOf(child).name);
+
+        var arr = [1,2,3, 'Edwin']; // Array.prototype
+        console.log((new Date()).toString());
+
+        // get classname attribute
+        Object.getClassName = function (obj) {
+            var str = Object.prototype.toString.call(obj).split(' ')[1];
+            return str.substring(0, str.length - 1); // should be written in regular expressions
+        };
+
+        // todo: instructor: write regular expression to get classname
+
+
+        console.log(Object.getClassName(person_1)); // classname attribute of the object (native)
+        console.log(person_1.constructor.name); // UDO
+
+
+        // for later
+        // .call() - method available to all functions because it is defined in Function.prototype
+        person.sayHello();
+
+        var mishra = {
+            name: 'Mishra'
+        };
+
+        person.sayHello.call(mishra);
+
+        // var obj =  new SomeConstructor()
+        // parent of obj is SomeConstructor.prototype
+
+        var str = 'asdf';
+        var date = new Date();
+        var regex = /asdf/g;
+
+        // Data types in javascript: Primitives - string, boolean, number, undefined / object (null) /
+
+        console.log('ASDF'.toLowerCase());
+
+        // Anagrams in an array
+        var names = ['Edwin', 'Villanueva', 'Mishra', 'niwde', 'arhsim', 'wined'];
+
+
+
+        // Output
+        // Group 1 : 'Edwin', 'niwde', 'wined'
+        // Group 2 : 'Mishra', 'arhsim'
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
