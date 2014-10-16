@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="base.css"/>
+    <script src="external.js"></script>
+    <script>
+        console.log('Hello World!');
+        // todo: Javascript from a anchor tag using javascript: uri
+    </script>
+</head>
+<body>
+
+    <button>
+        Remove Sibling
+    </button>
+
+    <script>
+
+        // Node <— Element <— HTMLElement <— HTMLDivElement
+        // Page to parse
+        // document --> API
+        var div = document.createElement('div'); // HTMLDivElement
+        div.innerHTML = 'Hello from Tin Hon';
+        console.log(div);
+        document.body.appendChild(div);
+
+        var sibling = document.createElement('div');
+        sibling.innerHTML = 'I am sibling of div';
+
+        div.parentNode.insertBefore(sibling, div);
+
+        document.body.firstElementChild.addEventListener('click', function () {
+            console.log('button click event ... ');
+            sibling.parentNode.removeChild(sibling);
+        });
+
+
+
+    </script>
+
+</body>
+</html>

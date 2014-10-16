@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        // todo: pageX and pageY - scroll divs
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            function Point(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+
+            Point.prototype.subtract = function (point) {
+                return new Point(this.x - point.x, this.y - point.y);
+            };
+
+
+            var x = new Point(10, 10);
+            var y = new Point(100, 15);
+            console.log(y.subtract(x));
+
+            var pos = {
+                init: {},
+                final: {},
+                element: null
+            };
+
+
+
+            window.addEventListener('mousedown', function (event) {
+                var div = document.createElement('div');
+                document.body.appendChild(div);
+                div.className = 'abs';
+                div.style.backgroundColor = 'red';
+
+                pos.init = new Point(event.clientX, event.clientY);
+                console.log(pos.init);
+                div.style.left = pos.init.x + 'px';
+                div.style.top = pos.init.y + 'px';
+
+                pos.element = div;
+
+                window.addEventListener('mousemove', mousemovehandler);
+            });
+
+            window.addEventListener('mouseup', function () {
+                window.removeEventListener('mousemove', mousemovehandler);
+            });
+
+
+            function mousemovehandler(event) {
+                pos.final = new Point(event.clientX, event.clientY);
+                var delta = pos.final.subtract(pos.init);
+
+                pos.element.style.width = delta.x + 'px';
+                pos.element.style.height = delta.y + 'px';
+
+            }
+
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

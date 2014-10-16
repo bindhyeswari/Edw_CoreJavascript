@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="base.css"/>
+    <title></title>
+    <script>
+
+        // http://caniuse.com/
+
+        window.onload = function () { // DOM Level 1
+            console.log('test');
+        };
+
+        // DOM Level 2
+        window.addEventListener('load', function () {
+            // document.body.firstElementChild.innerHTML = 'Hello WOrld!';
+
+            // window.addEventListener('click', moveSquare);
+
+            function moveSquare(event) {
+                // change color on click
+                var div = document.body.firstElementChild;
+                div.style.backgroundColor = randColor();
+                // move the div element
+                div.style.top = event.clientY + 'px';
+                div.style.left = event.clientX + 'px';
+            }
+
+            function createDiv(event) { // mouseup, mousedown, mousemove
+                var div = document.createElement('div');
+                document.body.appendChild(div);
+                div.className = 'abs';
+                div.style.backgroundColor = randColor();
+
+
+            }
+
+
+
+
+
+
+
+            function randColor() {
+                return 'rgb(' + [0,0,0].map(function (elem) {
+                    return Math.round(Math.random() * 255);
+                }).join(', ') + ')';
+            }
+        });
+
+
+
+        var start = new Date();
+        // todo: Explain the readyState: refer 13.3.4 Client-Side JavaScript Timeline of JTDG
+        document.addEventListener('readystatechange', function () {
+
+            console.log(document.readyState);
+            // code goes here
+
+            var end = new Date();
+            console.log(end - start);
+
+        });
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <div class="square"></div>
+    <p>This is some data</p>
+
+</body>
+</html>

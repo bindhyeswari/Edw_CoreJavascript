@@ -102,10 +102,33 @@
         var names = ['Edwin', 'Villanueva', 'Mishra', 'niwde', 'arhsim', 'wined'];
 
 
+        // digest / hash
+
+        function hash (str) {
+            str = str.toLowerCase();
+            var sum = 0;
+            for (var i = 0, len = str.length; i < len; i++) {
+                sum += str.charCodeAt(i);
+            }
+            return sum;
+        }
+
+        var hashmap = {};
+        for (var i = 0, len = names.length; i < len; i++) {
+            var key = hash(names[i]);
+            if ( key in hashmap ) {
+                hashmap[key].push(names[i]);
+            } else {
+                hashmap[key] = [names[i]];
+            }
+        }
+        console.log(hashmap);
 
         // Output
         // Group 1 : 'Edwin', 'niwde', 'wined'
         // Group 2 : 'Mishra', 'arhsim'
+
+        // todo: String.prototoype Number.prototype
 
 
     </script>
